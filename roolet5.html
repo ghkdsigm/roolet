@@ -1,0 +1,459 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>horizontal 룰렛</title>
+    <script
+      type="text/javascript"
+      src="https://www.jq22.com/demo/jQuery-SlotMachine-master/jquery-2.1.1.min.js"
+    ></script>
+
+    <script type="text/javascript" src="roolet5.js"></script>
+
+    <style type="text/css">
+      /* 해당 페이지 이벤트 css */
+      /* common */
+      body {
+        margin: 0;
+        padding: 0;
+        font: 12px/14px '돋움', dotum, AppleGothic, Sans-serif;
+      }
+      div,
+      p,
+      dl,
+      dt,
+      dd,
+      input {
+        margin: 0;
+        padding: 0;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        margin: 0;
+        padding: 0;
+      }
+      ul,
+      ol,
+      li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      em {
+        font-style: normal;
+      }
+      img {
+        vertical-align: top;
+      }
+      img,
+      fieldset {
+        border: 0;
+      }
+      select {
+        margin: 0;
+        padding: 0;
+        color: #707070;
+      }
+      .blind {
+        overflow: hidden;
+        position: absolute;
+        width: 0;
+        height: 0;
+        visibility: hidden;
+      }
+
+      /* layout */
+      body {
+        background-color: #fff;
+      }
+      #event_wrap {
+        width: 100%;
+      }
+      .wrap {
+        position: relative;
+        width: 1100px;
+        margin: 0 auto;
+        padding-bottom: 0;
+      }
+      #container {
+        position: relative;
+        width: 1100px;
+        zoom: 1;
+      }
+
+      /* background */
+      .bg_l {
+        margin: 0px;
+        overflow: hidden;
+        position: absolute;
+        right: 50%;
+        top: 0;
+        width: 50%;
+        height: 2681px;
+        margin-right: 550px;
+        background: url(https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/bg_l.jpg)
+          right top no-repeat;
+      }
+      * + html .bg_l {
+        margin-right: 549px;
+      }
+      .bg_r {
+        margin: 0px;
+        overflow: hidden;
+        position: absolute;
+        right: 1px;
+        _right: auto;
+        _left: 50%;
+        top: 0;
+        width: 50%;
+        height: 2681px;
+        background: url(https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/bg_r.jpg)
+          550px top no-repeat;
+      }
+      body:first-of-type .bg_l {
+        left: -550px;
+      }
+      body:first-of-type .bg_r {
+        left: 50%;
+      }
+
+      div.top {
+        position: relative;
+        background: url(https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/top.jpg)
+          no-repeat;
+        height: 531px;
+        width: 1100px;
+      }
+      div.top a.btnTop {
+        position: absolute;
+        top: 5px;
+        left: 47px;
+        width: 270px;
+        height: 21px;
+      }
+      div.top a.btn01 {
+        position: absolute;
+        top: 440px;
+        left: 145px;
+        width: 53px;
+        height: 56px;
+      }
+
+      div.pop1 {
+        position: absolute;
+        z-index: 500;
+        top: 720px;
+        left: 500px;
+        width: 450px;
+        height: 450px;
+        background: url(https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/pop1.jpg)
+          no-repeat;
+      }
+      div.pop2 {
+        position: absolute;
+        z-index: 500;
+        top: 720px;
+        left: 500px;
+        width: 450px;
+        height: 450px;
+        background: url(https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/pop2.jpg)
+          no-repeat;
+      }
+      div.pop3 {
+        position: absolute;
+        z-index: 500;
+        top: 720px;
+        left: 500px;
+        width: 450px;
+        height: 450px;
+        background: url(https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/pop3.jpg)
+          no-repeat;
+      }
+      div.pop4 {
+        position: absolute;
+        z-index: 500;
+        top: 720px;
+        left: 500px;
+        width: 450px;
+        height: 450px;
+        background: url(https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/pop4.jpg)
+          no-repeat;
+      }
+      div.pop4 p.popTxt {
+        position: absolute;
+        top: 210px;
+        left: 31px;
+        width: 389px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        padding: 15px 0 6px 0;
+        vertical-align: middle;
+      }
+      a.popClose {
+        position: absolute;
+        top: 14px;
+        left: 404px;
+        width: 36px;
+        height: 36px;
+      }
+      a.popBtn {
+        position: absolute;
+        top: 349px;
+        left: 113px;
+        width: 227px;
+        height: 55px;
+      }
+
+      div.ev01 {
+        position: relative;
+        background: url(https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/01.jpg)
+          no-repeat;
+        height: 550px;
+        width: 1100px;
+      }
+      div.ev01 p.nam {
+        position: absolute;
+        top: 214px;
+        left: 129px;
+        width: 844px;
+        height: 39px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        padding: 15px 0 6px 0;
+      }
+      div.ev01 span.yell {
+        font-weight: bold;
+        color: #ffd879;
+      }
+      div.ev01 span.red {
+        font-weight: bold;
+        color: #d00000;
+      }
+      div.ev01 a.btn02 {
+        position: absolute;
+        top: 75px;
+        left: 735px;
+        width: 284px;
+        height: 69px;
+      }
+      div.ev01 a.btn03 {
+        position: absolute;
+        top: 248px;
+        left: 946px;
+        width: 136px;
+        height: 136px;
+      }
+      div.ev01 p.slot1 {
+        position: absolute;
+        top: 309px;
+        left: 187px;
+        width: 179px;
+        height: 215px;
+      }
+      div.ev01 p.slot2 {
+        position: absolute;
+        top: 309px;
+        left: 451px;
+        width: 179px;
+        height: 215px;
+      }
+      div.ev01 p.slot3 {
+        position: absolute;
+        top: 309px;
+        left: 712px;
+        width: 179px;
+        height: 215px;
+      }
+
+      div.ev02 {
+        position: relative;
+        background: url(https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/02.jpg)
+          no-repeat;
+        height: 386px;
+        width: 1100px;
+      }
+      div.ev02 p.mill {
+        position: absolute;
+        top: 205px;
+        left: 242px;
+        width: 132px;
+        height: 37px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #d00000;
+        text-align: center;
+        padding: 13px 0 6px 0;
+      }
+      div.ev02 p.free {
+        position: absolute;
+        top: 205px;
+        left: 406px;
+        width: 132px;
+        height: 37px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #d00000;
+        text-align: center;
+        padding: 13px 0 6px 0;
+      }
+      div.ev02 p.preMill {
+        position: absolute;
+        top: 98px;
+        left: 637px;
+        width: 132px;
+        height: 37px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #d00000;
+        text-align: center;
+        padding: 13px 0 6px 0;
+      }
+      div.ev02 p.preFree {
+        position: absolute;
+        top: 98px;
+        left: 811px;
+        width: 132px;
+        height: 37px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #d00000;
+        text-align: center;
+        padding: 13px 0 6px 0;
+      }
+
+      div.ev03 {
+        position: relative;
+        background: url(https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/03.jpg)
+          no-repeat;
+        height: 807px;
+        width: 1100px;
+      }
+
+      div.ev04 {
+        position: relative;
+        background: url(https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/04.jpg)
+          no-repeat;
+        height: 407px;
+        width: 1100px;
+      }
+
+      div.ev05 {
+        position: relative;
+        background: url(https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/05.jpg)
+          no-repeat 0 12px;
+        height: 318px;
+        width: 1100px;
+      }
+      div.ev05 a.btn04 {
+        position: absolute;
+        top: 12px;
+        left: 915px;
+        width: 126px;
+        height: 92px;
+      }
+
+      div.board {
+        background: url(https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/table_bg.gif)
+          no-repeat;
+        padding-bottom: 40px;
+      }
+      table.tab01 {
+        margin-bottom: 10px;
+        margin: 0 auto;
+      }
+      table.tab01 input.txt2 {
+        width: 650px;
+        padding: 9px;
+        border: 1px solid #cccccc;
+      }
+      table.board {
+        width: 800px;
+        table-layout: fixed;
+        color: #666666;
+        line-height: 13pt;
+      }
+      table.board th {
+        height: 25px;
+        background-color: #a8a8a8;
+      }
+      table.board td {
+        border-bottom: 1px solid #d6d6d6;
+        text-align: center;
+        padding: 9px 0 5px 0;
+      }
+      table.board td.left {
+        text-align: left;
+      }
+      .paging {
+        padding-top: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <div id="container">
+        <div class="top">
+          <div class="ev01">
+            <p class="nam">로그인 후 참여 가능합니다</p>
+            <a
+              href="#"
+              id="goHappyMoney"
+              class="btn02"
+              title="배팅권 받으러가기"
+            ></a>
+            <a
+              href="#"
+              id="useBattingTicket"
+              class="btn03"
+              title="배팅gogo"
+            ></a>
+            <p class="slot1">
+              <img
+                src="https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/slot1.gif"
+                alt="slot"
+              />
+            </p>
+            <p class="slot2">
+              <img
+                src="https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/slot2.gif"
+                alt="slot"
+              />
+            </p>
+            <p class="slot3">
+              <img
+                src="https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/slot3.gif"
+                alt="slot"
+              />
+            </p>
+          </div>
+
+          <div class="ev02">
+            <p class="mill" id="nowMileage">0</p>
+            <p class="free" id="nowTicket">0개</p>
+            <p class="preMill" id="preMileage">0</p>
+            <p class="preFree" id="preTicket">0개</p>
+          </div>
+
+          <div class="ev03"></div>
+          <div class="ev04"></div>
+        </div>
+      </div>
+    </div>
+    <button class="stopmachine">정지</button>
+  </body>
+</html>
