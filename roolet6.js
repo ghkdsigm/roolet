@@ -128,7 +128,7 @@ $(function () {
   /* 슬롯 결과발표 */
   function slotMachineFinish(v, i) {
     if (v === '#slot_box3 .list') {
-      setTimeout(() => {
+      setTimeout(function () {
         $('.slotMachineStarting').removeClass('disabled');
       }, 1000);
       var resultValue1 = $('li:nth-child(1)', '#slot_box1').attr('data-roll');
