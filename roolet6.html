@@ -7,8 +7,8 @@
       type="text/javascript"
       src="https://www.jq22.com/demo/jQuery-SlotMachine-master/jquery-2.1.1.min.js"
     ></script>
-
-    <script type="text/javascript" src="roolet4.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="roolet6.js"></script>
 
     <style type="text/css">
       * {
@@ -42,18 +42,20 @@
       .list {
         position: relative;
         display: flex;
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        flex-wrap: nowrap;
-        -moz-flex-wrap: nowrap;
-        -ms-flex-wrap: nowrap;
+        /* flex-wrap: nowrap; */
+
+        /* justify-content: end; */
+        justify-items: end;
+
+        flex-direction: row-reverse;
       }
       .list li {
         width: 520px;
         height: 774px;
         list-style: none;
         position: relative;
+        display: flex;
+        margin-left: auto;
       }
       .list img {
         /* border: 1px solid; */
@@ -62,7 +64,7 @@
       .active {
         background-color: yellow;
       }
-      #slotMachineStarting {
+      .slotMachineStarting {
         width: 100px;
         padding: 10px;
         display: flex;
@@ -71,7 +73,18 @@
         color: #000;
         text-decoration: none;
         background: #fff;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
       }
+
+      .slotMachineStarting.disabled {
+        pointer-events: none;
+        cursor: default;
+        background: #ccc;
+        color: rgb(76, 76, 76);
+      }
+
       li[data-roll='2'] {
       }
 
@@ -82,10 +95,13 @@
         /* border: 2px solid; */
         overflow: hidden;
         display: flex;
-        display: -webkit-box;
         display: -moz-box;
         display: -ms-flexbox;
         margin: 0 15px;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+        flex-direction: row-reverse;
       }
       #slot_box2 {
         position: relative;
@@ -94,10 +110,13 @@
         /* border: 2px solid; */
         overflow: hidden;
         display: flex;
-        display: -webkit-box;
         display: -moz-box;
         display: -ms-flexbox;
         margin: 0 15px;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+        flex-direction: row-reverse;
       }
 
       .basicBg::after {
@@ -121,10 +140,13 @@
         /* border: 2px solid; */
         overflow: hidden;
         display: flex;
-        display: -webkit-box;
         display: -moz-box;
         display: -ms-flexbox;
         margin: 0 15px;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+        flex-direction: row-reverse;
       }
 
       .basicBg::before {
@@ -445,13 +467,26 @@
       </div>
       <!-- end slot box -->
     </div>
-    <a href="javacsript:void(0);" id="slotMachineStarting" title="배팅gogo">
-      <span class="count">0</span>
+    <a href="javascript:;" class="slotMachineStarting" title="배팅gogo">
+      <span class="slotCount"></span>
       배팅</a
     >
     <div class="result"></div>
     <div id="symbol_no1"></div>
     <div id="symbol_no2"></div>
     <div id="symbol_no3"></div>
+    <div class="evtPop build">
+      <div class="success">
+        <div><img src="" alt="" /></div>
+        <div class="context">담첨</div>
+        <span class="btn close" title="확인">닫기</span
+        ><!-- btn:확인 -->
+      </div>
+      <div class="fail">
+        <div class="context">실패</div>
+        <span class="btn close" title="확인">닫기</span
+        ><!-- btn:확인 -->
+      </div>
+    </div>
   </body>
 </html>
