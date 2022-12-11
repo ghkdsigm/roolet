@@ -79,6 +79,13 @@
         text-align: center;
       }
 
+      .evtPop .slotMachineStarting {
+        width: auto;
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+      }
+
       .slotMachineStarting.disabled {
         pointer-events: none;
         cursor: default;
@@ -328,6 +335,67 @@
       .list li[data-roll='8'] {
         background-position: -3790px -10px;
       }
+
+      /* .itemResult li {
+        background: url('images/css_sprites.png');
+        background-size: 4860px 794px;
+      }
+      .itemResult li[data-roll='1'] {
+        background-position: -10px -10px;
+      }
+      .itemResult li[data-roll='2'] {
+        background-position: -550px -10px;
+      }
+      .itemResult li[data-roll='3'] {
+        background-position: -1090px -10px;
+      }
+      .itemResult li[data-roll='4'] {
+        background-position: -1630px -10px;
+      }
+      .itemResult li[data-roll='5'] {
+        background-position: -2170px -10px;
+      }
+      .itemResult li[data-roll='6'] {
+        background-position: -2710px -10px;
+      }
+      .itemResult li[data-roll='7'] {
+        background-position: -3250px -10px;
+      }
+      .itemResult li[data-roll='8'] {
+        background-position: -3790px -10px;
+      } */
+
+      /* 이벤트팝업 */
+      .evtPop.build {
+        display: none;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+        top: 90px;
+        width: 515px;
+        height: 746px;
+        /* background: url(images/pop_bg.jpg) no-repeat; */
+        background: #ccc;
+        z-index: 9999;
+      }
+      .evtPop.build > div {
+        position: absolute;
+        left: 22px;
+        top: 25px;
+        width: 471px;
+        height: 698px;
+      }
+      .evtPop.build .btn.close {
+        left: 69px;
+        top: 570px;
+        width: 333px;
+        height: 121px;
+        /* background: url(images/pop_btn.png) no-repeat; */
+        background: #eee;
+        z-index: 9999;
+        color: #000;
+      }
+
       @keyframes slide {
         0% {
           background-position-x: 0%;
@@ -472,19 +540,36 @@
       <span class="slotCount"></span>
       배팅</a
     >
-    <div class="result"></div>
     <div id="symbol_no1"></div>
     <div id="symbol_no2"></div>
     <div id="symbol_no3"></div>
+    <!-- <ul class="itemResult">
+      <li data-roll="1"></li>
+      <li data-roll="2"></li>
+      <li data-roll="3"></li>
+      <li data-roll="4"></li>
+      <li data-roll="5"></li>
+      <li data-roll="6"></li>
+      <li data-roll="7"></li>
+      <li data-roll="8"></li>
+    </ul> -->
     <div class="evtPop build">
       <div class="success">
         <div><img src="" alt="" /></div>
         <div class="context">담첨</div>
+        <span class="slotMachineStarting" title="배팅gogo">
+          <span class="slotCount"></span>
+          이어서 배팅</span
+        >
         <span class="btn close" title="확인">닫기</span
         ><!-- btn:확인 -->
       </div>
       <div class="fail">
         <div class="context">실패</div>
+        <span class="slotMachineStarting" title="배팅gogo">
+          <span class="slotCount"></span>
+          이어서 배팅</span
+        >
         <span class="btn close" title="확인">닫기</span
         ><!-- btn:확인 -->
       </div>

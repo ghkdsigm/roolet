@@ -212,6 +212,7 @@ $(function () {
   function resetSlot() {
     $('.list').removeClass('on');
     $('.slot .basicBg').addClass('basicBg');
+    $('.evtPop').hide();
     $('.evtPop.build > div').hide();
     $('.evtPop.build .btn.close').hide();
   }
