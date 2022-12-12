@@ -45,17 +45,17 @@ $(function () {
 		$(this).css({ left: '0' });
   
 		// 현재 심볼 번호
-		var symbol_no1 = $('li:nth-child(1)', '#slot_box1').attr('data-roll');
-		var symbol_no2 = $('li:nth-child(1)', '#slot_box2').attr('data-roll');
-		var symbol_no3 = $('li:nth-child(1)', '#slot_box3').attr('data-roll');
+		var symbol_no1 = $('li:nth-child(1)', '#slot_box1').attr('data-roll'),
+		    symbol_no2 = $('li:nth-child(1)', '#slot_box2').attr('data-roll'),
+		    symbol_no3 = $('li:nth-child(1)', '#slot_box3').attr('data-roll')
 		$('#symbol_no1').html('symbol No: ' + symbol_no1);
 		$('#symbol_no2').html('symbol No: ' + symbol_no2);
 		$('#symbol_no3').html('symbol No: ' + symbol_no3);
 	  };
   
-	  var calcSpeed1 = speed1 + (spd * 20 + spd);
-	  var calcSpeed2 = speed2 + (spd * 20 + spd);
-	  var calcSpeed3 = speed3 + (spd * 20 + spd);
+	  var calcSpeed1 = speed1 + (spd * 20 + spd),
+		  calcSpeed2 = speed2 + (spd * 20 + spd),
+		  calcSpeed3 = speed3 + (spd * 20 + spd)
   
 	  // slot 목록 순환
 	  if (selector === '#slot_box1 .list') {
@@ -64,7 +64,11 @@ $(function () {
 		  .promise()
 		  .done(function () {
 			$(this).addClass('on');
-			slotMachineFinish(selector, spd);
+			slotMachineFinish(selector, spd);				
+			if(spd > 1){
+				return this
+			}		
+			bang(this);
 		  });
 	  }
 	  if (selector === '#slot_box2 .list') {
@@ -74,6 +78,10 @@ $(function () {
 		  .done(function () {
 			$(this).addClass('on');  
 			slotMachineFinish(selector, spd);
+			if(spd > 1){
+				return this
+			}		
+			bang(this);
 		  });
 	  }
 	  if (selector === '#slot_box3 .list') {
@@ -82,18 +90,28 @@ $(function () {
 		  .promise()
 		  .done(function () {
 			$(this).addClass('on');  
-			slotMachineFinish(selector, spd);
+			slotMachineFinish(selector, spd);		
+			if(spd > 1){
+				return this
+			}		
+			bang(this);
 		  });
 	  }	 
+	}
+
+	/* 폭죽태그 추가 */
+	function bang(ele){
+		//console.log(ele)
+		ele.find('li:nth-child(1)').append("<div class='pyro'><div class='after'></div><div class='before'></div></div>")
 	}
   
 	/* 슬롯 객체를 정의 */
 	function Slot_roll(slotName) {
 	  this.dice = function (v) {
 		/* 주사위확률 정하기 */
-		var dice1 = Math.floor(Math.random() * (8 - 1 + 1)) + 1;  //1~8중 랜덤 ( *돌아가는 횟수 포함 )
-		var dice2 = Math.floor(Math.random() * (16 - 9 + 1)) + 9;  //9~16중 랜덤 ( *돌아가는 횟수 포함 )
-		var dice3 = Math.floor(Math.random() * (24 - 17 + 1)) + 17;  //17~24중 랜덤 ( *돌아가는 횟수 포함 )
+		var dice1 = Math.floor(Math.random() * (8 - 1 + 1)) + 1,  //1~8중 랜덤 ( *돌아가는 횟수 포함 )
+		    dice2 = Math.floor(Math.random() * (16 - 9 + 1)) + 9,  //9~16중 랜덤 ( *돌아가는 횟수 포함 )
+		    dice3 = Math.floor(Math.random() * (24 - 17 + 1)) + 17  //17~24중 랜덤 ( *돌아가는 횟수 포함 )
   
 		/* 주사위확률 무조건 당첨 */
 		// var dice1 = 16;
@@ -126,9 +144,9 @@ $(function () {
 		  $('.slotMachineStarting').removeClass('disabled');
 		}, 1000);
 
-		var resultValue1 = $('li:nth-child(1)', '#slot_box1').attr('data-roll');
-		var resultValue2 = $('li:nth-child(1)', '#slot_box2').attr('data-roll');
-		var resultValue3 = $('li:nth-child(1)', '#slot_box3').attr('data-roll');
+		var resultValue1 = $('li:nth-child(1)', '#slot_box1').attr('data-roll'),
+		    resultValue2 = $('li:nth-child(1)', '#slot_box2').attr('data-roll'),
+		    resultValue3 = $('li:nth-child(1)', '#slot_box3').attr('data-roll')
 
 		if (resultValue1 === resultValue2 && resultValue2 === resultValue3) {
 		  setTimeout(success, 1000);
@@ -166,9 +184,9 @@ $(function () {
 	}
   
 	/* 슬롯 객체 인스턴스 생성 */
-	var slot_roll1 = new Slot_roll('#slot_box1 .list');
-	var slot_roll2 = new Slot_roll('#slot_box2 .list');
-	var slot_roll3 = new Slot_roll('#slot_box3 .list');
+	var slot_roll1 = new Slot_roll('#slot_box1 .list'),
+	    slot_roll2 = new Slot_roll('#slot_box2 .list'),
+	    slot_roll3 = new Slot_roll('#slot_box3 .list')
   
 	/* 슬롯 시작!! */
 	function machineStart(){
@@ -186,9 +204,9 @@ $(function () {
 			$('.slot .basicBg').removeClass('basicBg');
 			// $('.slot .basicBg').animate({opacity: "0"}, 500);
 			
-			var diceA = 'dice1';
-			var diceB = 'dice2';
-			var diceC = 'dice3';
+			var diceA = 'dice1',
+			    diceB = 'dice2',
+			    diceC = 'dice3'
 
 			// 애니메이션이 재생중이 아닐 때만 돌리고!!
 			if ($('#slot_box1 .list').is(':not(:animated)')) {
