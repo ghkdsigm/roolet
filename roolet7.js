@@ -6,16 +6,16 @@ $(function () {
 	      : Math.floor(Math.random() * 2 + 1) + 1; // slot 회전 속도
 	  var speed2 =
 	    selector === '#slot_box2 .list'
-	      ? 10
+	      ? 60
 	      : Math.floor(Math.random() * 2 + 1) + 1; // slot 회전 속도
 	  var speed3 =
 	    selector === '#slot_box3 .list'
-	      ? 15
+	      ? 130
 	      : Math.floor(Math.random() * 2 + 1) + 1; // slot 회전 속도
   
-	  //var speed = 10;
+	  //var speed = 10; // slot 회전 속도
   
-	  var func = function () {
+	  var slotAfterAction = function () {
 		var firstChild = $('.list li:first-child');
 		lastChild = $('.list li:last-child');
 		// 첫째 목록을 마지막으로 이동
@@ -39,7 +39,7 @@ $(function () {
 	  // slot 목록 순환
 	  if (selector === '#slot_box1 .list') {
 		$('#slot_box1 .list')
-		  .animate({ left: '520px' }, calcSpeed1, 'linear', func)
+		  .animate({ left: '520px' }, calcSpeed1, 'linear', slotAfterAction)
 		  .promise()
 		  .done(function () {
 			$(this).addClass('on');
@@ -48,7 +48,7 @@ $(function () {
 	  }
 	  if (selector === '#slot_box2 .list') {
 		$('#slot_box2 .list')
-		  .animate({ left: '520px' }, calcSpeed2, 'linear', func)
+		  .animate({ left: '520px' }, calcSpeed2, 'linear', slotAfterAction)
 		  .promise()
 		  .done(function () {
 			$(this).addClass('on');
@@ -58,7 +58,7 @@ $(function () {
 	  }
 	  if (selector === '#slot_box3 .list') {
 		$('#slot_box3 .list')
-		  .animate({ left: '520px' }, calcSpeed3, 'linear', func)
+		  .animate({ left: '520px' }, calcSpeed3, 'linear', slotAfterAction)
 		  .promise()
 		  .done(function () {
 			$(this).addClass('on');
@@ -94,9 +94,9 @@ $(function () {
 	function Slot_roll(slotName) {
 	  this.dice = function (v) {
 		/* 주사위확률 정하기 */
-		var dice1 = Math.floor(Math.random() * (8 - 1 + 1)) + 1;
-		var dice2 = Math.floor(Math.random() * (16 - 9 + 1)) + 9;
-		var dice3 = Math.floor(Math.random() * (24 - 17 + 1)) + 17;
+		var dice1 = Math.floor(Math.random() * (8 - 1 + 1)) + 1;  //1~8중 랜덤 ( *돌아가는 횟수 포함 )
+		var dice2 = Math.floor(Math.random() * (16 - 9 + 1)) + 9;  //9~16중 랜덤 ( *돌아가는 횟수 포함 )
+		var dice3 = Math.floor(Math.random() * (24 - 17 + 1)) + 17;  //17~24중 랜덤 ( *돌아가는 횟수 포함 )
   
 		/* 무조건 당첨 */
 		// var dice1 = 16;
@@ -123,33 +123,27 @@ $(function () {
 			//slotMachineFinish(dice3);
 		  }
 		}
-		/* if(dice){
-		  var num = 1
-		  for(var i=0; i<=dice; i++){
-			num++
-		  }
-		  console.log(num)
-		}	 */
 	  };
 	}
   
 	/* 슬롯 결과발표 */
 	function slotMachineFinish(v, i) {
 	  if (v === '#slot_box3 .list') {
+		
 		setTimeout(function () {
 		  $('.slotMachineStarting').removeClass('disabled');
 		}, 1000);
+
 		var resultValue1 = $('li:nth-child(1)', '#slot_box1').attr('data-roll');
 		var resultValue2 = $('li:nth-child(1)', '#slot_box2').attr('data-roll');
 		var resultValue3 = $('li:nth-child(1)', '#slot_box3').attr('data-roll');
-		//console.log(resultValue1);
-		//console.log(resultValue2);
-		//console.log(resultValue3);
+
 		if (resultValue1 === resultValue2 && resultValue2 === resultValue3) {
 		  setTimeout(success, 1000);
 		} else {
 		  setTimeout(fail, 1000);
 		}
+
 	  } else {
 		return;
 	  }
@@ -198,9 +192,11 @@ $(function () {
 		$(this).addClass('disabled');
 		$('.slot .basicBg').removeClass('basicBg');
 		// $('.slot .basicBg').animate({opacity: "0"}, 500);
+		
 		var diceA = 'dice1';
 		var diceB = 'dice2';
 		var diceC = 'dice3';
+
 		// 애니메이션이 재생중이 아닐 때만 돌리고!!
 		if ($('#slot_box1 .list').is(':not(:animated)')) {
 		  slot_roll1.dice(diceA);
@@ -211,12 +207,13 @@ $(function () {
 		if ($('#slot_box3 .list').is(':not(:animated)')) {
 		  slot_roll3.dice(diceC);
 		}
+
 		count--;
 		slotCount.text(count);
 	  }
 	});
   
-	/* 슬롯 연속 돌릴시 리셋 */
+	/* 슬롯 연속해서 돌릴시 리셋 */
 	function resetSlot() {
 	  $('.list').removeClass('on');
 	  $('.slot .basicBg').addClass('basicBg');

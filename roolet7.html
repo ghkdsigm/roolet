@@ -307,6 +307,8 @@
         -webkit-animation: 'explosion' 0.5s ease-in-out;
       }
 
+      /* 슬롯 리스트 */
+
       .list li {
         background: url('images/css_sprites.png');
         background-size: 4860px 794px;
@@ -396,6 +398,21 @@
         color: #000;
       }
 
+      .evtPop.build.rotate-in-ver {
+        -webkit-animation: rotate-in-ver 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+                animation: rotate-in-ver 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+      }
+
+      /* 선택 카드 빛 */
+      @-webkit-keyframes slide {
+        0% {
+          background-position-x: 0%;
+        }
+        100% {
+          background-position-x: 600vw;
+        }
+      }
+
       @keyframes slide {
         0% {
           background-position-x: 0%;
@@ -462,6 +479,28 @@
       }
 
       /* 섬광 */
+      @-webkit-keyframes explosion {
+        0% {
+          box-shadow: 0 0 130px 110px #fff, 0 0 150px 130px #fff,
+            0 0 170px 160px #fff;
+          background-color: #fff;
+        }
+        /* 450% {
+          box-shadow: 0 0 160px 130px #fff, 0 0 1100px 160px #fff,
+            0 0 1140px 190px #fff;
+          background-color: #fff;
+        } */
+        50% {
+          box-shadow: 0 0 260px 230px #fff, 0 0 1100px 260px #fff,
+            0 0 1140px 290px #fff;
+          background-color: #fff;
+        }
+        100% {
+          box-shadow: 0 0 1160px 1130px #fff, 0 0 1100px 1160px #fff,
+            0 0 1140px 1190px #fff;
+          background-color: #fff;
+        }
+      }
       @keyframes explosion {
         0% {
           box-shadow: 0 0 130px 110px #fff, 0 0 150px 130px #fff,
@@ -485,7 +524,31 @@
         }
       }
 
-      /* 폭죽 */
+      /* 팝업 회전 */
+      @-webkit-keyframes rotate-in-ver {
+        0% {
+          -webkit-transform: rotateY(-360deg);
+                  transform: rotateY(-360deg);
+          opacity: 0;
+        }
+        100% {
+          -webkit-transform: rotateY(0deg);
+                  transform: rotateY(0deg);
+          opacity: 1;
+        }
+      }
+      @keyframes rotate-in-ver {
+        0% {
+          -webkit-transform: rotateY(-360deg);
+                  transform: rotateY(-360deg);
+          opacity: 0;
+        }
+        100% {
+          -webkit-transform: rotateY(0deg);
+                  transform: rotateY(0deg);
+          opacity: 1;
+        }
+      }
     </style>
   </head>
 
@@ -556,7 +619,7 @@
     <div class="evtPop build">
       <div class="success">
         <div><img src="" alt="" /></div>
-        <div class="context">담첨</div>
+        <div class="context">당첨</div>
         <span class="slotMachineStarting" title="배팅gogo">
           <span class="slotCount"></span>
           이어서 배팅</span
