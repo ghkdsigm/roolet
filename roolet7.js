@@ -109,14 +109,14 @@ $(function () {
 	function Slot_roll(slotName) {
 	  this.dice = function (v) {
 		/* 주사위확률 정하기 */
-		var dice1 = Math.floor(Math.random() * (8 - 1 + 1)) + 1,  //1~8중 랜덤 ( *돌아가는 횟수 포함 )
-		    dice2 = Math.floor(Math.random() * (16 - 9 + 1)) + 9,  //9~16중 랜덤 ( *돌아가는 횟수 포함 )
-		    dice3 = Math.floor(Math.random() * (24 - 17 + 1)) + 17  //17~24중 랜덤 ( *돌아가는 횟수 포함 )
+		// var dice1 = Math.floor(Math.random() * (8 - 1 + 1)) + 1,  //1~8중 랜덤 ( *돌아가는 횟수 포함 )
+		//     dice2 = Math.floor(Math.random() * (16 - 9 + 1)) + 9,  //9~16중 랜덤 ( *돌아가는 횟수 포함 )
+		//     dice3 = Math.floor(Math.random() * (24 - 17 + 1)) + 17  //17~24중 랜덤 ( *돌아가는 횟수 포함 )
   
 		/* 주사위확률 무조건 당첨 */
-		// var dice1 = 16;
-		// var dice2 = 16;
-		// var dice3 = 16;
+		var dice1 = 16;
+		var dice2 = 16;
+		var dice3 = 16;
 
 		if (v == 'dice1') {
 		  for (var i = 1; i <= dice1; i++) {
@@ -192,12 +192,12 @@ $(function () {
 	function machineStart(){
 		var slotCount = $('.slotMachineStarting .slotCount');
 		count = 3;
-		slotCount.text(count);
+		slotCount.text('플로린 코인 ' + count + '개 소진');
 		$('.slotMachineStarting').on('click', function (e) {
 		if (count === 0) {
 			e.preventDefault();
 			alert('플로린 코인이 부족합니다.');
-			slotCount.text(count);
+			slotCount.text('플로린 코인 ' + count + '개 소진');
 		} else if (count >= 1) {
 			resetSlot();
 			$(this).addClass('disabled');
@@ -220,7 +220,7 @@ $(function () {
 			}
 
 			count--;
-			slotCount.text(count);
+			slotCount.text('플로린 코인 ' + count + '개 소진');
 		}
 		});
 	}
