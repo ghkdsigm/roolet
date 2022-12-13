@@ -87,13 +87,13 @@ $(function () {
         reelC.addClass('top3');
 
         // 첫번째 릴
-        var counter = 0;
+        var counterA = 0;
         var setIntervalIdA = setInterval(function () {
-          counter++;
+          counterA++;
           epromA = Math.floor(Math.random() * arr.length);
           //random number is the index of the array that given time (changes every 10 milliseconds)
           $(reelA).attr('src', arr[epromA]);
-          if (counter === 140) {
+          if (counterA === 140) {
             //회전 멈추는 시점
             $(reelA).attr('src', arr[epromAA - 1]);
             clearInterval(setIntervalIdA);
