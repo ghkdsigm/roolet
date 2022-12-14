@@ -6,41 +6,26 @@
 
 $(function () {
   //슬롯 이미지
-//   var game1 = 'images/1.jpg';
-//   var game2 = 'images/2.jpg';
-//   var game3 = 'images/3.jpg';
-//   var game4 = 'images/4.jpg';
-//   var game5 = 'images/5.jpg';
-//   var game6 = 'images/6.jpg';
-//   var game7 = 'images/7.jpg';
-//   var game8 = 'images/8.jpg';
-//   var game9 = 'images/9.jpg';
-//   var game10 = 'images/10.jpg';
-//   var game11 = 'images/11.jpg';
-//   var game12 = 'images/12.jpg';
-//   var game13 = 'images/13.jpg';
-  var game1 = 'images/game_1.jpg';
-  var game2 = 'images/game_2.jpg';
-  var game3 = 'images/game_3.jpg';
-  var game4 = 'images/game_4.jpg';
-  var game5 = 'images/game_1.jpg';
-  var game6 = 'images/game_2.jpg';
-  var game7 = 'images/game_3.jpg';
-  var game8 = 'images/game_4.jpg';
+  var game1 = 'images/game_1.jpg',
+      game2 = 'images/game_2.jpg',
+      game3 = 'images/game_3.jpg',
+      game4 = 'images/game_4.jpg',
+      game5 = 'images/game_1.jpg',
+      game6 = 'images/game_2.jpg'
 
   //슬롯 이미지 위치
-  var reelA = $('#rollerA');
-  var reelB = $('#rollerB');
-  var reelC = $('#rollerC');
+  var reelA = $('#rollerA'),
+      reelB = $('#rollerB'),
+      reelC = $('#rollerC')
 
   //랜덤숫자(롤링횟수)
   var epromA;
   var epromB;
   var epromC;
 
-  var epromAA = 3; //확률 값 넣기
-  var epromBB = 3; //확률 값 넣기
-  var epromCC = 3; //확률 값 넣기
+  var epromAA = 4; //확률 값 넣기
+  var epromBB = 4; //확률 값 넣기
+  var epromCC = 4; //확률 값 넣기
 
   //롤링등장 시간
   var showRoolet1 = 140;
@@ -48,30 +33,13 @@ $(function () {
   var showRoolet3 = 400;
 
   //이미지 배열
-//   const arr = [
-//     game1,
-//     game2,
-//     game3,
-//     game4,
-//     game5,
-//     game6,
-//     game7,
-//     game8,
-//     game9,
-//     game10,
-//     game11,
-//     game12,
-//     game13,
-//   ];
   var arr = [
     game1,
     game2,
     game3,
     game4,
     game5,
-    game6,
-    game7,
-    game8
+    game6
   ];
 
   var isLogin = true; //로그인일시 true, 로그아웃중일시 false 값
@@ -192,9 +160,9 @@ $(function () {
 
             //***3개 슬롯 다 맞을경우****
             if (epromAA === epromBB && epromBB === epromCC) {
-              setTimeout(success, 1000);
+              setTimeout(success, 500);
             } else {
-              setTimeout(fail, 1000);
+              setTimeout(fail, 500);
             }
             return;
           }
@@ -220,7 +188,7 @@ $(function () {
 
 	  /* 회전 */
 	  function spinRoolet(){
-		for(var i = 0; i < showRoolet3/21; i++){				
+		for(var i = 0; i < showRoolet3/17; i++){				
 			var slotAfterAction = function () {
 				var firstChild = $('.list li:first-child');
 					lastChild = $('.list li:last-child');
@@ -229,7 +197,7 @@ $(function () {
 					$(this).append(firstChild);
 					$(this).css({ marginBottom: "0px" });		
 			}
-			$('.list').animate({ marginBottom: "-774px" }, 210, 'linear', slotAfterAction)
+			$('.list').animate({ marginBottom: "-774px" }, 250, 'linear', slotAfterAction)
 		}
 	  }
 	
