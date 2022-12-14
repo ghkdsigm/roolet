@@ -62,7 +62,7 @@ $(function () {
 
   function machineStart() {
     $('.slotMachineStarting').on('click', function () {
-	  $('.slotMachineStarting').off(); //단 한번만 실행시키기
+	  //$('.slotMachineStarting').off(); //단 한번만 실행시키기
       if (count === 0) {
         alert('플로린 코인이 부족합니다.');
         slotCount.text('플로린 코인 ' + count + '개 소진');
@@ -197,7 +197,7 @@ $(function () {
 					$(this).append(firstChild);
 					$(this).css({ marginBottom: "0px" });		
 			}
-			$('.list').animate({ marginBottom: "-774px" }, 250, 'linear', slotAfterAction)
+			$('.list').animate({ marginBottom: "-145%" }, 250, 'linear', slotAfterAction)
 		}
 	  }
 	
