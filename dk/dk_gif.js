@@ -19,6 +19,7 @@ $(function () {
 //   var game11 = 'images/11.jpg';
 //   var game12 = 'images/12.jpg';
 //   var game13 = 'images/13.jpg';
+  var game0 = 'https://www.itembay.com/resources/image/design/event_ing/evt2014/evt20140331_hm/spin.gif';
   var game1 = 'images/game_1.jpg';
   var game2 = 'images/game_2.jpg';
   var game3 = 'images/game_3.jpg';
@@ -38,14 +39,9 @@ $(function () {
   var epromB;
   var epromC;
 
-  var epromAA = 3; //확률 값 넣기
+  var epromAA = 5; //확률 값 넣기
   var epromBB = 3; //확률 값 넣기
-  var epromCC = 3; //확률 값 넣기
-
-  //롤링등장 시간
-  var showRoolet1 = 140;
-  var showRoolet2 = 280;
-  var showRoolet3 = 400;
+  var epromCC = 6; //확률 값 넣기
 
   //이미지 배열
 //   const arr = [
@@ -63,7 +59,7 @@ $(function () {
 //     game12,
 //     game13,
 //   ];
-  var arr = [
+const arr = [
     game1,
     game2,
     game3,
@@ -89,52 +85,47 @@ $(function () {
   }
 
   var slotCount = $('.slotMachineStarting .slotCount');
-  count = 333; //보유 코인수
+  count = 3; //보유 코인수
   slotCount.text('플로린 코인 ' + count + '개 소진');
 
   function machineStart() {
     $('.slotMachineStarting').on('click', function () {
-	  $('.slotMachineStarting').off(); //단 한번만 실행시키기
       if (count === 0) {
         alert('플로린 코인이 부족합니다.');
         slotCount.text('플로린 코인 ' + count + '개 소진');
         $('.evtPop').hide();
       } else if (count >= 1) {
-        resetSlot();	
-		spinRoolet()
-		$('.reels').find('img').removeClass('on')
-		
+        resetSlot();
         $('.slotMachineStarting').addClass('disabled');
-        $('img').addClass('blur');
+        //$('img').addClass('blur');
         $('img').removeClass('shake');
         $('.reels').removeClass('on');
-		$('.reels').removeClass('default');
-		$('.list').show();
-
         //bangDel($('.reels'));
-        reelA.addClass('top2');
-        reelB.addClass('top2');
-        reelC.addClass('top3');
+        //reelA.addClass('top2');
+        //reelB.addClass('top2');
+        //reelC.addClass('top3');
 
         // 첫번째 릴
-        var counterA = 0;		
+		console.log(game0)
+		$(reelA).attr('src', game0);
+        var counterA = 0;
         var setIntervalIdA = setInterval(function () {
           counterA++;
           //epromA = Math.floor(Math.random() * arr.length);
-          //랜덤숫자
+		  //epromA = game0
+		  //console.log(game0)
+          //랜덤숫자 attr 추가
           //$(reelA).attr('src', arr[epromA]);
-		  
-          if (counterA === showRoolet1) {
+          if (counterA === 140) {
             //회전 멈추는 시점
             $(reelA).attr('src', arr[epromAA - 1]);
             clearInterval(setIntervalIdA);
             console.log('slot stopped 1');
             //현재 이미지 보여주는 시점
-            //console.log(epromA);
-            $('#rollerA').removeClass('blur');
-            $('#rollerA').addClass('shake on');
+            console.log(epromA);
+            //$('#rollerA').removeClass('blur');
+            $('#rollerA').addClass('shake');
             $('#slotA').addClass('on');
-			$('#slotA').find('.list').hide()
             $('#rollerA').removeClass('top2');
             bang($('#slotA'));
             return;
@@ -142,23 +133,22 @@ $(function () {
         }, 10);
 
         // 두번째 릴
+		console.log(game0)
+		$(reelB).attr('src', game0);
         var counterB = 0;
         var setIntervalIdB = setInterval(function () {
           counterB++;
           //epromB = Math.floor(Math.random() * arr.length);
           //epromB = Math.floor(Math.random() * arr.length);
           //$(reelB).attr('src', arr[epromB]);
-
-          if (counterB === showRoolet2) {
+          if (counterB === 220) {
             $(reelB).attr('src', arr[epromBB - 1]);
             clearInterval(setIntervalIdB);
             console.log('slot stopped 2');
-            //현재 이미지 보여주는 시점
-			//console.log(epromB);
+            console.log(epromB);
             $('#rollerB').removeClass('blur');
-            $('#rollerB').addClass('shake on');
+            $('#rollerB').addClass('shake');
             $('#slotB').addClass('on');
-			$('#slotB').find('.list').hide()
             $('#rollerB').removeClass('top2');
             bang($('#slotB'));
             return;
@@ -166,22 +156,23 @@ $(function () {
         }, 10);
 
         // 세번째 릴
+		console.log(game0)
+		$(reelC).attr('src', game0);
         var counterC = 0;
         var setIntervalIdC = setInterval(function () {
           counterC++;
           //epromC = Math.floor(Math.random() * arr.length);
+          //epromC = Math.floor(Math.random() * arr.length);
           //$(reelC).attr('src', arr[epromC]);
 
-          if (counterC === showRoolet3) {
+          if (counterC === 400) {
             $(reelC).attr('src', arr[epromCC - 1]);
             clearInterval(setIntervalIdC);
             console.log('slot stopped 3');
-            //현재 이미지 보여주는 시점
-			//console.log(epromC);
+            console.log(epromC);
             $('#rollerC').removeClass('blur');
-            $('#rollerC').addClass('shake on');
+            $('#rollerC').addClass('shake');
             $('#slotC').addClass('on');
-			$('#slotC').find('.list').hide()
             $('#rollerC').removeClass('top3');
             bang($('#slotC'));
 
@@ -217,22 +208,6 @@ $(function () {
           "<div class='pyro'><div class='after'></div><div class='before'></div></div>"
         );
       }
-
-	  /* 회전 */
-	  function spinRoolet(){
-		for(var i = 0; i < showRoolet3/21; i++){				
-			var slotAfterAction = function () {
-				var firstChild = $('.list li:first-child');
-					lastChild = $('.list li:last-child');
-					// 첫째 목록을 마지막으로 이동
-					firstChild = $('li:first-child', this);
-					$(this).append(firstChild);
-					$(this).css({ marginBottom: "0px" });		
-			}
-			$('.list').animate({ marginBottom: "-774px" }, 210, 'linear', slotAfterAction)
-		}
-	  }
-	
 
       /* 결과 */
       //레이어팝업:btn확인
