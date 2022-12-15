@@ -32,7 +32,7 @@ $(function () {
   var epromBB = 6; //확률 값 넣기
   var epromCC = 6; //확률 값 넣기
 
-  //롤링등장 시간
+  //롤링 시간
   var showRoolet1 = 140;
   var showRoolet2 = 280;
   var showRoolet3 = 400;
