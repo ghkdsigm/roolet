@@ -105,7 +105,7 @@ $(function () {
               return;
             }
           }, 10);
-        }, 10);
+        }, 1);
 
         setTimeout(function () {
           spinRoolet(slotB, showRoolet2);
